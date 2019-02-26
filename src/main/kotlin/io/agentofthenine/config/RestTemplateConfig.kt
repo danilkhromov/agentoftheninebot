@@ -8,17 +8,16 @@ import org.springframework.web.client.RestTemplate
 
 @Configuration
 open class RestTemplateConfig(
-        templateBuilder: RestTemplateBuilder,
-        @Value("\${root.uri}") rootUri: String,
-        @Value("\${x.api.key}") xApiKey: String
-) {
-    private val bunieNetRestTemplate = templateBuilder
-            .rootUri(rootUri)
-            .interceptors(BungieNetXApiKeyInterceptor(xApiKey))
-            .build()
+        @Value("\${root.uri}") private val rootUri: String,
+        @Value("\${x.api.key}") private val xApiKey: String,
 
+        private val templateBuilder: RestTemplateBuilder
+) {
     @Bean
     open fun getBungieNetRestTemplate(): RestTemplate {
-        return bunieNetRestTemplate
+        return templateBuilder
+                .rootUri(rootUri)
+                .interceptors(BungieNetXApiKeyInterceptor(xApiKey))
+                .build()
     }
 }
