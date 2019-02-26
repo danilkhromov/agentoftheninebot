@@ -14,6 +14,7 @@ repositories {
 dependencies {
     compile(kotlin("stdlib-jdk8"))
     compile("org.jetbrains.kotlin", "kotlin-reflect", "1.2.60")
+    compile("com.fasterxml.jackson.module","jackson-module-kotlin","2.9.+")
     compile("ch.qos.logback", "logback-classic", "1.2.3")
     compile("org.springframework.boot", "spring-boot-starter-web", "2.0.4.RELEASE")
     compile("org.telegram", "telegrambots-spring-boot-starter", "4.0.1")

@@ -5,9 +5,15 @@ import org.springframework.web.client.RestTemplate
 
 @Service
 open class BungieNetPublicVendorService (
-        bungieNetRestTemplate: RestTemplate
+        private val bungieNetRestTemplate: RestTemplate
 ) {
-    fun getPublicVendors() {
+    open fun getDestinyPublicVendors() {
+    }
+
+    open fun getDestinyVendorDefinition() {
+    }
+
+    open fun getDestinyVendorItemDefinition() {
 
     }
 }
