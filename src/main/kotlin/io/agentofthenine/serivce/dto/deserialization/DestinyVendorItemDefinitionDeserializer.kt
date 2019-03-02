@@ -10,8 +10,8 @@ open class DestinyVendorItemDefinitionDeserializer(
         vc: Class<*>?
 ) : StdDeserializer<DestinyVendorItemDefinitionDto>(vc) {
 
-    override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): DestinyVendorItemDefinitionDto {
-        val node: JsonNode = p!!.codec.readTree(p)
+    override fun deserialize(p: JsonParser, ctxt: DeserializationContext?): DestinyVendorItemDefinitionDto {
+        val node: JsonNode = p.codec.readTree(p)
         val name: String = node.get("Response.displayProperties.name").textValue()
         val description: String = node.get("Response.displayProperties.description").textValue()
         val itemType: String = node.get("Response.itemTypeAndTierDisplayName").textValue()

@@ -8,8 +8,8 @@ import io.agentofthenine.serivce.dto.DestinyVendorDefinitionDto
 
 open class DestinyVendorDefinitionDeserializer(vc: Class<*>?) : StdDeserializer<DestinyVendorDefinitionDto>(vc) {
 
-    override fun deserialize(p: JsonParser?, ctxt: DeserializationContext?): DestinyVendorDefinitionDto {
-        val node: JsonNode = p!!.codec.readTree(p)
+    override fun deserialize(p: JsonParser, ctxt: DeserializationContext?): DestinyVendorDefinitionDto {
+        val node: JsonNode = p.codec.readTree(p)
         val name: String = node.get("Response.displayProperties.name").textValue()
 
         return DestinyVendorDefinitionDto(name)
