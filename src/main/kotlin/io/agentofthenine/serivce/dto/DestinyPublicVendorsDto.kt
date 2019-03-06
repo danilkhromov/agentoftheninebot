@@ -2,5 +2,5 @@ package io.agentofthenine.serivce.dto
 
 data class DestinyPublicVendorsDto(
         val vendorHash: String,
-        val
+        val sales: Set<DestinyVendorSalesDto>
 )
