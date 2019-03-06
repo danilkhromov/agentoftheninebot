@@ -5,7 +5,7 @@ import io.agentofthenine.serivce.dto.deserialization.DestinyVendorItemDefinition
 
 @JsonDeserialize(using = DestinyVendorItemDefinitionDeserializer::class)
 data class DestinyVendorItemDefinitionDto(
-        private val name: String,
-        private val description: String,
-        private val itemType: String
+        val name: String,
+        val description: String,
+        val itemType: String
 )

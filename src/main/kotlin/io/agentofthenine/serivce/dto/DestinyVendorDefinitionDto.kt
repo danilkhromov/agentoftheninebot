@@ -5,5 +5,5 @@ import io.agentofthenine.serivce.dto.deserialization.DestinyVendorDefinitionDese
 
 @JsonDeserialize(using = DestinyVendorDefinitionDeserializer::class)
 data class DestinyVendorDefinitionDto(
-        private val name: String
+        val name: String
 )

@@ -8,8 +8,10 @@ import org.springframework.web.client.RestTemplate
 
 @Configuration
 open class RestTemplateConfig(
-        @Value("\${root.uri}") private val rootUri: String,
-        @Value("\${x.api.key}") private val xApiKey: String,
+        @Value("\${root.uri}")
+        private val rootUri: String,
+        @Value("\${x.api.key}")
+        private val xApiKey: String,
 
         private val templateBuilder: RestTemplateBuilder
 ) {

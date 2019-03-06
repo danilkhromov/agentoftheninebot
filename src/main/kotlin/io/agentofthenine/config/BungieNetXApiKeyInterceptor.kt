@@ -10,8 +10,7 @@ class BungieNetXApiKeyInterceptor (private val xApiKey: String) : ClientHttpRequ
     override fun intercept(request: HttpRequest,
                            body: ByteArray,
                            execution: ClientHttpRequestExecution): ClientHttpResponse {
-        val response = execution.execute(request, body)
-        response.headers.add("X-API-Key", xApiKey)
-        return response
+        request.headers.add("X-API-Key", xApiKey)
+        return execution.execute(request, body)
     }
 }

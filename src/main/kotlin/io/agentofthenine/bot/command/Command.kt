@@ -5,12 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.User
 import org.telegram.telegrambots.meta.bots.AbsSender
 
 abstract class Command(
-        private val commandIdentifier: String
+        val commandIdentifier: String
 ) {
-
-    fun getCommandIdentifier(): String {
-        return commandIdentifier
-    }
-
     abstract fun execute(absSender: AbsSender, user: User, chat: Chat)
 }
