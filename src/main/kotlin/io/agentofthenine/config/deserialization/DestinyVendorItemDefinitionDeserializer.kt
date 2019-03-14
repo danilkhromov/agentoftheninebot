@@ -1,10 +1,10 @@
-package io.agentofthenine.serivce.dto.deserialization
+package io.agentofthenine.config.deserialization
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
-import io.agentofthenine.serivce.dto.DestinyVendorItemDefinition
+import io.agentofthenine.bungie.dto.DestinyVendorItemDefinition
 
 open class DestinyVendorItemDefinitionDeserializer(
         vc: Class<*>?

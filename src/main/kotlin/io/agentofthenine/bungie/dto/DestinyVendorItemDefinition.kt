@@ -1,4 +1,4 @@
-package io.agentofthenine.serivce.dto
+package io.agentofthenine.bungie.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

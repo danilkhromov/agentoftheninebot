@@ -1,4 +1,4 @@
-package io.agentofthenine.serivce.dto.deserialization
+package io.agentofthenine.config.deserialization
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.DeserializationContext
@@ -6,8 +6,8 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import io.agentofthenine.serivce.dto.DestinyVendorSaleItem
-import io.agentofthenine.serivce.dto.DestinyVendorSales
+import io.agentofthenine.bungie.dto.DestinyVendorSaleItem
+import io.agentofthenine.bungie.dto.DestinyVendorSales
 
 class DestinyVendorSalesDeserializer : StdDeserializer<DestinyVendorSales>(DestinyVendorSales::class.java) {
 

@@ -3,8 +3,8 @@ package io.agentofthenine.config
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import io.agentofthenine.serivce.dto.DestinyPublicVendors
-import io.agentofthenine.serivce.dto.deserialization.DestinyPublicVendorsDeserializer
+import io.agentofthenine.bungie.dto.DestinyPublicVendors
+import io.agentofthenine.config.deserialization.DestinyPublicVendorsDeserializer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder
