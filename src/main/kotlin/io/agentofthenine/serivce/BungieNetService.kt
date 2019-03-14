@@ -1,15 +1,14 @@
 package io.agentofthenine.serivce
 
-import io.agentofthenine.serivce.dto.DestinyVendorDefinitionDto
-import io.agentofthenine.serivce.dto.DestinyVendorItemDefinitionDto
+import io.agentofthenine.serivce.dto.DestinyPublicVendors
+import io.agentofthenine.serivce.dto.DestinyVendorDefinition
+import io.agentofthenine.serivce.dto.DestinyVendorItemDefinition
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.http.HttpEntity
-import org.springframework.http.HttpHeaders
-import org.springframework.http.HttpMethod
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.client.getForEntity
+import javax.annotation.PostConstruct
 
 @Service
 open class BungieNetService (
@@ -21,21 +20,25 @@ open class BungieNetService (
         private val bungieNetRestTemplate: RestTemplate
 ) {
 
-    open fun getDestinyPublicVendors(): DestinyVendorDefinitionDto? {
-        val query = mutableMapOf("components" to PublicVendorsComponents.values())
-        val responseEntity: ResponseEntity<DestinyVendorDefinitionDto> = bungieNetRestTemplate.getForEntity(
+    @PostConstruct
+    open fun init() {
+        getDestinyPublicVendors()
+    }
+
+    open fun getDestinyPublicVendors(): DestinyPublicVendors? {
+        val query = mutableMapOf("components" to "402")
+        val responseEntity: ResponseEntity<DestinyPublicVendors> = bungieNetRestTemplate.getForEntity(
                 publicVendorsUrl,
-                DestinyVendorDefinitionDto::class,
-                query
+                DestinyPublicVendors::class
         )
 
         return responseEntity.body
     }
 
-    open fun getDestinyVendorDefinition(entityType: String, hashIdentifier: String): DestinyVendorDefinitionDto? {
-        val responseEntity: ResponseEntity<DestinyVendorDefinitionDto> = bungieNetRestTemplate.getForEntity(
+    open fun getDestinyVendorDefinition(entityType: String, hashIdentifier: String): DestinyVendorDefinition? {
+        val responseEntity: ResponseEntity<DestinyVendorDefinition> = bungieNetRestTemplate.getForEntity(
                 entityDefinitionUrl,
-                DestinyVendorDefinitionDto::class,
+                DestinyVendorDefinition::class,
                 entityType,
                 hashIdentifier
         )
@@ -46,10 +49,10 @@ open class BungieNetService (
     open fun getDestinyVendorItemDefinition(
             entityType: String,
             hashIdentifier: String
-    ): DestinyVendorItemDefinitionDto? {
-        val responseEntity: ResponseEntity<DestinyVendorItemDefinitionDto> = bungieNetRestTemplate.getForEntity(
+    ): DestinyVendorItemDefinition? {
+        val responseEntity: ResponseEntity<DestinyVendorItemDefinition> = bungieNetRestTemplate.getForEntity(
                 entityDefinitionUrl,
-                DestinyVendorItemDefinitionDto::class,
+                DestinyVendorItemDefinition::class,
                 entityType,
                 hashIdentifier
         )

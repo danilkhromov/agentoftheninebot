@@ -1,6 +1,6 @@
 package io.agentofthenine.serivce.dto
 
-open class DestinyVendorSalesDto(
+data class DestinyItemPrice (
         val itemHash: String,
-        val quantity: String
+        val quantity: Int
 )
