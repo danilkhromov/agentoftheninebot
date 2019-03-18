@@ -6,15 +6,14 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer
 import io.agentofthenine.bungie.dto.DestinyVendorItemDefinition
 
-open class DestinyVendorItemDefinitionDeserializer(
-        vc: Class<*>?
-) : StdDeserializer<DestinyVendorItemDefinition>(vc) {
+open class DestinyVendorItemDefinitionDeserializer
+    : StdDeserializer<DestinyVendorItemDefinition>(DestinyVendorItemDefinition::class.java) {
 
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext?): DestinyVendorItemDefinition {
         val node: JsonNode = p.codec.readTree(p)
-        val name: String = node.get("Response.displayProperties.name").textValue()
-        val description: String = node.get("Response.displayProperties.description").textValue()
-        val itemType: String = node.get("Response.itemTypeAndTierDisplayName").textValue()
+        val name = node.get("Response").get("displayProperties").get("name").textValue()
+        val description = node.get("Response").get("displayProperties").get("description").textValue()
+        val itemType = node.get("Response").get("itemTypeAndTierDisplayName").textValue()
 
         return DestinyVendorItemDefinition(name, description, itemType)
     }

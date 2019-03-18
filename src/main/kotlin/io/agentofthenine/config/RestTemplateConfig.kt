@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import io.agentofthenine.bungie.dto.DestinyPublicVendors
+import io.agentofthenine.bungie.dto.DestinyVendorItemDefinition
 import io.agentofthenine.config.deserialization.DestinyPublicVendorsDeserializer
+import io.agentofthenine.config.deserialization.DestinyVendorItemDefinitionDeserializer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.web.client.RestTemplateBuilder
@@ -43,8 +45,9 @@ open class RestTemplateConfig(
 
     @Bean
     open fun getObjectMapper(): ObjectMapper {
-        val module: SimpleModule = SimpleModule()
+        val module = SimpleModule()
         module.addDeserializer(DestinyPublicVendors::class.java, DestinyPublicVendorsDeserializer())
+        module.addDeserializer(DestinyVendorItemDefinition::class.java, DestinyVendorItemDefinitionDeserializer())
 
         return ObjectMapper().registerModule(KotlinModule()).registerModule(module)
     }
