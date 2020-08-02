@@ -11,8 +11,8 @@ import org.telegram.telegrambots.meta.bots.AbsSender
 import javax.annotation.PostConstruct
 
 @Service
-open class CommandService(
-        private var commands: MutableMap<String, Command> = mutableMapOf()
+class CommandService(
+    private var commands: MutableMap<String, Command> = mutableMapOf()
 ) : ApplicationContextAware {
 
     private lateinit var context: ApplicationContext
@@ -21,18 +21,19 @@ open class CommandService(
     private lateinit var commandIdentifiers: List<String>
 
     @PostConstruct
-    open fun init() {
-        commandIdentifiers.forEach{ c ->
+    fun init() {
+        commandIdentifiers.forEach { c ->
             val command = CommandIdentifier.valueOf(c).getCommand(c)
             context.autowireCapableBeanFactory.autowireBean(command)
-            commands[c] = command }
+            commands[c] = command
+        }
     }
 
     override fun setApplicationContext(applicationContext: ApplicationContext) {
         context = applicationContext
     }
 
-    open fun executeCommand(absSender: AbsSender, message: Message) {
+    fun executeCommand(absSender: AbsSender, message: Message) {
         if (message.hasText()) {
             val text: String = message.text
             if (text.startsWith("/")) {
